@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import WhyChooseUs from "@/components/WhyChooseUs";
+import OurCapabilities from "@/components/OurCapabilities";
+import TrustedClients from "@/components/TrustedClients";
 import ProductsPreview from "@/components/ProductsPreview";
 import CompanyDetails from "@/components/CompanyDetails";
 import CTASection from "@/components/CTASection";
@@ -14,7 +15,8 @@ const Index = () => (
     <main>
       <Hero />
       <About />
-      <WhyChooseUs />
+      <OurCapabilities />
+      <TrustedClients />
       <ProductsPreview />
       <CompanyDetails />
       <CTASection />

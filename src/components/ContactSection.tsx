@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Send, MapPin, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const contactInfo = [
-  { icon: MapPin, label: "Address", value: "Ground Floor, No 14, 19th Main,\nMuneshwara Block, Bengaluru – 560026" },
-  { icon: Phone, label: "Phone", value: "8041011568" },
-  { icon: Mail, label: "Email", value: "info@nsquareelectronics.com" },
-  { icon: Clock, label: "Working Hours", value: "Mon - Sat: 9:00 AM - 6:00 PM" },
+const offices = [
+  {
+    title: "Registered Office",
+    address: "#14, 19th Main Road, Muneswara Block,\nNear Ganesha Temple,\nBengaluru – 560026",
+  },
+  {
+    title: "Work Office",
+    address: "#39/39, 1st Cross,\nMaruthi Nagar Road, Sonnenahalli,\nBengaluru – 560056",
+  },
 ];
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [form, setForm] = useState({ name: "", company: "", phone: "", email: "", requirement: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [focused, setFocused] = useState<string | null>(null);
 
@@ -21,7 +25,7 @@ const ContactSection = () => {
     if (!form.name.trim()) e.name = "Name is required";
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Valid email required";
     if (!form.phone.trim() || !/^\d{10}$/.test(form.phone.replace(/\D/g, ""))) e.phone = "Valid 10-digit phone required";
-    if (!form.message.trim()) e.message = "Message is required";
+    if (!form.requirement.trim()) e.requirement = "Requirement is required";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -29,19 +33,20 @@ const ContactSection = () => {
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!validate()) return;
-    toast({ title: "Message Sent!", description: "We'll get back to you shortly." });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    toast({ title: "Inquiry Submitted!", description: "We'll get back to you shortly." });
+    setForm({ name: "", company: "", phone: "", email: "", requirement: "" });
   };
 
   const fields = [
     { key: "name", type: "text", label: "Your Name" },
-    { key: "email", type: "email", label: "Email Address" },
+    { key: "company", type: "text", label: "Company Name" },
     { key: "phone", type: "text", label: "Phone Number" },
-    { key: "message", type: "textarea", label: "Your Message" },
+    { key: "email", type: "email", label: "Email Address" },
+    { key: "requirement", type: "textarea", label: "Your Requirement" },
   ] as const;
 
   return (
-    <section id="contact" className="py-24 bg-card">
+    <section id="contact" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -56,7 +61,7 @@ const ContactSection = () => {
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-            Have a question or need a quote? We'd love to hear from you.
+            Have a project in mind? Let's discuss how we can help.
           </p>
         </motion.div>
 
@@ -68,30 +73,44 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            {contactInfo.map((c, i) => (
-              <motion.div
-                key={c.label}
-                className="flex items-start gap-4 bg-background border border-border rounded-xl p-5 shadow-sm"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
+            {offices.map((office, i) => (
+              <div key={office.title} className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 shadow-sm">
                 <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <c.icon className="text-primary" size={20} />
+                  <MapPin className="text-primary" size={20} />
                 </div>
                 <div>
-                  <p className="text-foreground font-semibold text-sm">{c.label}</p>
-                  <p className="text-muted-foreground text-sm whitespace-pre-line mt-0.5">{c.value}</p>
+                  <p className="text-foreground font-semibold text-sm">{office.title}</p>
+                  <p className="text-muted-foreground text-sm whitespace-pre-line mt-0.5">{office.address}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
+
+            <div className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <Mail className="text-primary" size={20} />
+              </div>
+              <div>
+                <p className="text-foreground font-semibold text-sm">Email</p>
+                <p className="text-muted-foreground text-sm mt-0.5">nsquareelectronics24@gmail.com</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4 bg-card border border-border rounded-xl p-5 shadow-sm">
+              <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <Phone className="text-primary" size={20} />
+              </div>
+              <div>
+                <p className="text-foreground font-semibold text-sm">Contact</p>
+                <p className="text-muted-foreground text-sm mt-0.5">+91 8548867793</p>
+                <p className="text-muted-foreground text-sm">+91 9845179073</p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Right - Form */}
           <motion.form
             onSubmit={handleSubmit}
-            className="lg:col-span-3 bg-background border border-border rounded-2xl p-8 space-y-5 shadow-sm"
+            className="lg:col-span-3 bg-card border border-border rounded-2xl p-8 space-y-5 shadow-sm"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -110,7 +129,7 @@ const ContactSection = () => {
                 {field.type === "textarea" ? (
                   <textarea
                     rows={4}
-                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 resize-none ${
+                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-background border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 resize-none ${
                       errors[field.key] ? "border-destructive" : "border-border"
                     }`}
                     value={form[field.key]}
@@ -121,7 +140,7 @@ const ContactSection = () => {
                 ) : (
                   <input
                     type={field.type}
-                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 ${
+                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-background border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 ${
                       errors[field.key] ? "border-destructive" : "border-border"
                     }`}
                     value={form[field.key]}
@@ -146,7 +165,7 @@ const ContactSection = () => {
               type="submit"
               className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              Send Message <Send size={16} />
+              Submit Inquiry <Send size={16} />
             </button>
           </motion.form>
         </div>
