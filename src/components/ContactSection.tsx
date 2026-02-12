@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+
+const contactInfo = [
+  { icon: MapPin, label: "Address", value: "Ground Floor, No 14, 19th Main,\nMuneshwara Block, Bengaluru – 560026" },
+  { icon: Phone, label: "Phone", value: "8041011568" },
+  { icon: Mail, label: "Email", value: "info@nsquareelectronics.com" },
+  { icon: Clock, label: "Working Hours", value: "Mon - Sat: 9:00 AM - 6:00 PM" },
+];
 
 const ContactSection = () => {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [focused, setFocused] = useState<string | null>(null);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -25,63 +33,125 @@ const ContactSection = () => {
     setForm({ name: "", email: "", phone: "", message: "" });
   };
 
-  const inputClass = (field: string) =>
-    `w-full px-4 py-3 rounded-xl bg-card border text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition ${
-      errors[field] ? "border-destructive" : "border-border"
-    }`;
+  const fields = [
+    { key: "name", type: "text", label: "Your Name" },
+    { key: "email", type: "email", label: "Email Address" },
+    { key: "phone", type: "text", label: "Phone Number" },
+    { key: "message", type: "textarea", label: "Your Message" },
+  ] as const;
 
   return (
     <section id="contact" className="py-24 section-dark">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <motion.h2
-          className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-primary-foreground"
+      <div className="container mx-auto px-4">
+        <motion.div
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Get In <span className="text-primary">Touch</span>
-        </motion.h2>
-        <p className="text-center text-section-dark-foreground/60 mb-12">
-          Have a question or need a quote? Drop us a message.
-        </p>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary text-xs font-semibold uppercase tracking-wider mb-6">
+            Contact Us
+          </span>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground">
+            Get In <span className="gradient-text">Touch</span>
+          </h2>
+          <p className="text-section-dark-foreground/50 mt-4 max-w-lg mx-auto">
+            Have a question or need a quote? We'd love to hear from you.
+          </p>
+        </motion.div>
 
-        <motion.form
-          onSubmit={handleSubmit}
-          className="glass-card rounded-2xl p-8 space-y-5"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          {(["name", "email", "phone", "message"] as const).map((field) => (
-            <div key={field}>
-              {field === "message" ? (
-                <textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  className={inputClass(field)}
-                  value={form[field]}
-                  onChange={(e) => setForm({ ...form, [field]: e.target.value })}
-                />
-              ) : (
-                <input
-                  type={field === "email" ? "email" : "text"}
-                  placeholder={field === "name" ? "Your Name" : field === "email" ? "Email Address" : "Phone Number"}
-                  className={inputClass(field)}
-                  value={form[field]}
-                  onChange={(e) => setForm({ ...form, [field]: e.target.value })}
-                />
-              )}
-              {errors[field] && <p className="text-destructive text-xs mt-1">{errors[field]}</p>}
-            </div>
-          ))}
-
-          <button
-            type="submit"
-            className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+        <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
+          {/* Left - Contact Info */}
+          <motion.div
+            className="lg:col-span-2 space-y-6"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            Send Message <Send size={16} />
-          </button>
-        </motion.form>
+            {contactInfo.map((c, i) => (
+              <motion.div
+                key={c.label}
+                className="flex items-start gap-4 glass-card rounded-xl p-5"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                  <c.icon className="text-primary" size={20} />
+                </div>
+                <div>
+                  <p className="text-primary-foreground font-semibold text-sm">{c.label}</p>
+                  <p className="text-section-dark-foreground/60 text-sm whitespace-pre-line mt-0.5">{c.value}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Right - Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            className="lg:col-span-3 glass-card rounded-2xl p-8 space-y-5"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {fields.map((field) => (
+              <div key={field.key} className="relative">
+                <label
+                  className={`absolute left-4 transition-all duration-300 pointer-events-none ${
+                    focused === field.key || form[field.key]
+                      ? "top-1 text-[10px] text-primary font-semibold"
+                      : "top-3.5 text-sm text-muted-foreground"
+                  }`}
+                >
+                  {field.label}
+                </label>
+                {field.type === "textarea" ? (
+                  <textarea
+                    rows={4}
+                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card/50 border text-primary-foreground placeholder:text-transparent focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 resize-none ${
+                      errors[field.key] ? "border-destructive" : "border-border/30"
+                    }`}
+                    value={form[field.key]}
+                    onFocus={() => setFocused(field.key)}
+                    onBlur={() => setFocused(null)}
+                    onChange={(e) => setForm({ ...form, [field.key]: e.target.value })}
+                  />
+                ) : (
+                  <input
+                    type={field.type}
+                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card/50 border text-primary-foreground placeholder:text-transparent focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 ${
+                      errors[field.key] ? "border-destructive" : "border-border/30"
+                    }`}
+                    value={form[field.key]}
+                    onFocus={() => setFocused(field.key)}
+                    onBlur={() => setFocused(null)}
+                    onChange={(e) => setForm({ ...form, [field.key]: e.target.value })}
+                  />
+                )}
+                {errors[field.key] && (
+                  <motion.p
+                    className="text-destructive text-xs mt-1 ml-1"
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {errors[field.key]}
+                  </motion.p>
+                )}
+              </div>
+            ))}
+
+            <button
+              type="submit"
+              className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-all duration-300 shadow-[0_0_25px_-5px_hsl(var(--glow-primary)/0.3)] hover:shadow-[0_0_35px_-5px_hsl(var(--glow-primary)/0.5)]"
+            >
+              Send Message <Send size={16} />
+            </button>
+          </motion.form>
+        </div>
       </div>
     </section>
   );
