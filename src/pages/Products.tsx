@@ -123,7 +123,7 @@ const Products = () => (
     <main className="pt-16">
       {/* Hero */}
       <section className="relative py-20 bg-background overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-primary/5 blur-[80px]" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">Product Catalog</span>

@@ -8,8 +8,7 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "var(--hero-gradient)" }}
     >
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px]" />
-      <div className="absolute bottom-1/3 left-1/3 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[100px]" />
+      <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-primary/5 blur-[80px]" />
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         <motion.div
