@@ -42,10 +42,9 @@ const Products = () => {
     <>
       <Navbar />
       <main className="pt-16">
-        {/* Hero banner */}
-        <section className="relative py-20 section-dark overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/8 blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-secondary/8 blur-[100px]" />
+        {/* Hero */}
+        <section className="relative py-20 bg-background overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/5 blur-[120px]" />
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               className="text-center"
@@ -53,23 +52,23 @@ const Products = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary text-xs font-semibold uppercase tracking-wider mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
                 Product Catalog
               </span>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4">
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                 Our <span className="gradient-text">Products</span>
               </h1>
-              <p className="text-section-dark-foreground/50 text-lg max-w-xl mx-auto">
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">
                 Explore our range of LED lighting, display systems, and vehicle surveillance solutions.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Category tabs + grid */}
-        <section className="py-16 bg-background">
+        {/* Grid */}
+        <section className="py-16 section-light">
           <div className="container mx-auto px-4">
-            {/* Category filter */}
+            {/* Tabs */}
             <motion.div
               className="flex flex-wrap justify-center gap-3 mb-14"
               initial={{ opacity: 0, y: 16 }}
@@ -82,9 +81,9 @@ const Products = () => {
                   <button
                     key={cat.label}
                     onClick={() => setActive(cat.label)}
-                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                       isActive
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                        ? "bg-primary text-primary-foreground shadow-md"
                         : "bg-card border border-border text-muted-foreground hover:border-primary/30 hover:text-primary"
                     }`}
                   >
@@ -95,13 +94,11 @@ const Products = () => {
               })}
             </motion.div>
 
-            {/* Count */}
             <p className="text-muted-foreground text-sm mb-8">
               Showing <span className="font-semibold text-foreground">{filtered.length}</span> products
               {active !== "All" && <> in <span className="text-primary font-semibold">{active}</span></>}
             </p>
 
-            {/* Product grid */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}

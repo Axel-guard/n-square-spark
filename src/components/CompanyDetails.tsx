@@ -10,20 +10,18 @@ const details = [
 ];
 
 const CompanyDetails = () => (
-  <section className="py-24 section-dark relative overflow-hidden">
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-primary/5 blur-[120px]" />
-
-    <div className="container mx-auto px-4 relative z-10">
+  <section className="py-24 bg-card">
+    <div className="container mx-auto px-4">
       <motion.div
         className="text-center mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary text-xs font-semibold uppercase tracking-wider mb-6">
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
           Corporate Info
         </span>
-        <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground">
+        <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
           Company <span className="gradient-text">Details</span>
         </h2>
       </motion.div>
@@ -32,21 +30,19 @@ const CompanyDetails = () => (
         {details.map((d, i) => (
           <motion.div
             key={d.label}
-            className={`glass-card rounded-2xl p-6 flex items-start gap-4 hover:border-primary/30 hover:glow-primary transition-all duration-500 ${
-              i === details.length - 1 && details.length % 3 !== 0 ? "sm:col-span-2 lg:col-span-1" : ""
-            }`}
+            className="bg-background border border-border rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
             whileHover={{ y: -4 }}
           >
-            <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
               <d.icon className="text-primary" size={22} />
             </div>
             <div>
               <p className="text-primary text-xs font-semibold uppercase tracking-wider mb-1">{d.label}</p>
-              <p className="font-heading font-bold text-primary-foreground whitespace-pre-line leading-relaxed">{d.value}</p>
+              <p className="font-heading font-bold text-foreground whitespace-pre-line leading-relaxed">{d.value}</p>
             </div>
           </motion.div>
         ))}

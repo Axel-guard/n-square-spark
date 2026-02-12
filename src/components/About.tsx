@@ -12,10 +12,10 @@ const stats = [
 ];
 
 const About = () => (
-  <section className="py-24 bg-background overflow-hidden">
+  <section className="py-24 bg-card overflow-hidden">
     <div className="container mx-auto px-4">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
-        {/* Left - Image Collage */}
+        {/* Left - Image */}
         <motion.div
           className="relative"
           initial={{ opacity: 0, x: -30 }}
@@ -23,26 +23,23 @@ const About = () => (
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div className="relative">
-            <div className="absolute -inset-4 bg-primary/5 rounded-3xl blur-2xl" />
-            <div className="relative grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="bg-card border border-border rounded-2xl p-6 overflow-hidden">
-                  <img src={ledDisplay} alt="LED Display Board" className="w-full h-48 object-contain" loading="lazy" />
-                </div>
-                <div className="glass-card rounded-2xl p-6 text-center">
-                  <p className="font-heading text-3xl font-bold text-primary">2017</p>
-                  <p className="text-muted-foreground text-sm mt-1">Established</p>
-                </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <div className="bg-background rounded-2xl p-6 overflow-hidden border border-border shadow-sm">
+                <img src={ledDisplay} alt="LED Display Board" className="w-full h-48 object-contain" loading="lazy" />
               </div>
-              <div className="space-y-4 pt-8">
-                <div className="glass-card rounded-2xl p-6 text-center">
-                  <p className="font-heading text-3xl font-bold gradient-text">500+</p>
-                  <p className="text-muted-foreground text-sm mt-1">Projects</p>
-                </div>
-                <div className="bg-card border border-border rounded-2xl p-6 overflow-hidden">
-                  <img src={mdvr} alt="MDVR System" className="w-full h-48 object-contain" loading="lazy" />
-                </div>
+              <div className="bg-primary/5 rounded-2xl p-6 text-center border border-primary/10">
+                <p className="font-heading text-3xl font-bold text-primary">2017</p>
+                <p className="text-muted-foreground text-sm mt-1">Established</p>
+              </div>
+            </div>
+            <div className="space-y-4 pt-8">
+              <div className="bg-primary/5 rounded-2xl p-6 text-center border border-primary/10">
+                <p className="font-heading text-3xl font-bold gradient-text">500+</p>
+                <p className="text-muted-foreground text-sm mt-1">Projects</p>
+              </div>
+              <div className="bg-background rounded-2xl p-6 overflow-hidden border border-border shadow-sm">
+                <img src={mdvr} alt="MDVR System" className="w-full h-48 object-contain" loading="lazy" />
               </div>
             </div>
           </div>
@@ -75,12 +72,12 @@ const About = () => (
         </motion.div>
       </div>
 
-      {/* Stats Row */}
+      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
         {stats.map((s, i) => (
           <motion.div
             key={s.label}
-            className="bg-card border border-border rounded-2xl p-6 text-center hover:border-primary/30 hover:glow-primary transition-all duration-500"
+            className="bg-card border border-border rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

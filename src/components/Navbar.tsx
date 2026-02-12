@@ -24,16 +24,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 section-dark border-b border-border/10 backdrop-blur-md bg-section-dark/90">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-card/90 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="N Square Electronics" className="h-9 w-9 rounded" />
-          <span className="font-heading text-lg font-bold text-primary-foreground">
+          <span className="font-heading text-lg font-bold text-foreground">
             N Square <span className="text-primary">Electronics</span>
           </span>
         </Link>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((l) =>
             l.path.startsWith("/#") ? (
@@ -41,7 +40,7 @@ const Navbar = () => {
                 key={l.label}
                 to="/"
                 onClick={() => handleNavClick(l.path)}
-                className="text-section-dark-foreground/70 hover:text-primary transition-colors text-sm font-medium"
+                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
               >
                 {l.label}
               </Link>
@@ -52,7 +51,7 @@ const Navbar = () => {
                 className={`text-sm font-medium transition-colors ${
                   location.pathname === l.path
                     ? "text-primary"
-                    : "text-section-dark-foreground/70 hover:text-primary"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 {l.label}
@@ -61,9 +60,8 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile toggle */}
         <button
-          className="md:hidden text-section-dark-foreground"
+          className="md:hidden text-foreground"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -71,15 +69,14 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden section-dark border-t border-border/10 px-4 pb-4">
+        <div className="md:hidden bg-card border-t border-border px-4 pb-4">
           {navLinks.map((l) => (
             <Link
               key={l.label}
               to={l.path.startsWith("/#") ? "/" : l.path}
               onClick={() => handleNavClick(l.path)}
-              className="block py-3 text-section-dark-foreground/80 hover:text-primary transition-colors text-sm font-medium"
+              className="block py-3 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
             >
               {l.label}
             </Link>

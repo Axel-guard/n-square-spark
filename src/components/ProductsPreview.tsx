@@ -15,7 +15,7 @@ const featured = [
 ];
 
 const ProductsPreview = () => (
-  <section className="py-24 bg-background overflow-hidden">
+  <section className="py-24 section-light overflow-hidden">
     <div className="container mx-auto px-4">
       <motion.div
         className="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-4"
@@ -43,23 +43,23 @@ const ProductsPreview = () => (
         {featured.map((p, i) => (
           <motion.div
             key={p.title}
-            className="group relative bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/40 transition-all duration-500 hover:shadow-[0_8px_40px_-8px_hsl(var(--primary)/0.2)]"
+            className="group bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            whileHover={{ y: -6 }}
+            whileHover={{ y: -4 }}
           >
             <div className="absolute top-3 left-3 z-10">
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-primary/15 text-primary backdrop-blur-sm border border-primary/20">
+              <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/15">
                 {p.category}
               </span>
             </div>
-            <div className="aspect-square bg-gradient-to-br from-muted to-muted/50 overflow-hidden">
+            <div className="aspect-square bg-background overflow-hidden relative">
               <img
                 src={p.image}
                 alt={p.title}
-                className="w-full h-full object-contain p-6 group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </div>

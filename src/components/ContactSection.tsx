@@ -41,7 +41,7 @@ const ContactSection = () => {
   ] as const;
 
   return (
-    <section id="contact" className="py-24 section-dark">
+    <section id="contact" className="py-24 bg-card">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -49,41 +49,40 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-primary text-xs font-semibold uppercase tracking-wider mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-6">
             Contact Us
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-section-dark-foreground/50 mt-4 max-w-lg mx-auto">
+          <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
             Have a question or need a quote? We'd love to hear from you.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
-          {/* Left - Contact Info */}
+          {/* Left - Info */}
           <motion.div
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2 space-y-4"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
             {contactInfo.map((c, i) => (
               <motion.div
                 key={c.label}
-                className="flex items-start gap-4 glass-card rounded-xl p-5"
+                className="flex items-start gap-4 bg-background border border-border rounded-xl p-5 shadow-sm"
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <div className="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <c.icon className="text-primary" size={20} />
                 </div>
                 <div>
-                  <p className="text-primary-foreground font-semibold text-sm">{c.label}</p>
-                  <p className="text-section-dark-foreground/60 text-sm whitespace-pre-line mt-0.5">{c.value}</p>
+                  <p className="text-foreground font-semibold text-sm">{c.label}</p>
+                  <p className="text-muted-foreground text-sm whitespace-pre-line mt-0.5">{c.value}</p>
                 </div>
               </motion.div>
             ))}
@@ -92,18 +91,17 @@ const ContactSection = () => {
           {/* Right - Form */}
           <motion.form
             onSubmit={handleSubmit}
-            className="lg:col-span-3 glass-card rounded-2xl p-8 space-y-5"
+            className="lg:col-span-3 bg-background border border-border rounded-2xl p-8 space-y-5 shadow-sm"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
             {fields.map((field) => (
               <div key={field.key} className="relative">
                 <label
                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${
                     focused === field.key || form[field.key]
-                      ? "top-1 text-[10px] text-primary font-semibold"
+                      ? "top-1.5 text-[10px] text-primary font-semibold"
                       : "top-3.5 text-sm text-muted-foreground"
                   }`}
                 >
@@ -112,8 +110,8 @@ const ContactSection = () => {
                 {field.type === "textarea" ? (
                   <textarea
                     rows={4}
-                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card/50 border text-primary-foreground placeholder:text-transparent focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 resize-none ${
-                      errors[field.key] ? "border-destructive" : "border-border/30"
+                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 resize-none ${
+                      errors[field.key] ? "border-destructive" : "border-border"
                     }`}
                     value={form[field.key]}
                     onFocus={() => setFocused(field.key)}
@@ -123,8 +121,8 @@ const ContactSection = () => {
                 ) : (
                   <input
                     type={field.type}
-                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card/50 border text-primary-foreground placeholder:text-transparent focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 ${
-                      errors[field.key] ? "border-destructive" : "border-border/30"
+                    className={`w-full px-4 pt-6 pb-3 rounded-xl bg-card border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 ${
+                      errors[field.key] ? "border-destructive" : "border-border"
                     }`}
                     value={form[field.key]}
                     onFocus={() => setFocused(field.key)}
@@ -146,7 +144,7 @@ const ContactSection = () => {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-all duration-300 shadow-[0_0_25px_-5px_hsl(var(--glow-primary)/0.3)] hover:shadow-[0_0_35px_-5px_hsl(var(--glow-primary)/0.5)]"
+              className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               Send Message <Send size={16} />
             </button>
