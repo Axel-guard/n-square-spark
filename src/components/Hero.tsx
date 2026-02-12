@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -18,8 +18,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
-            <Zap size={14} />
-            Trusted Since 2017
+            Trusted Technology Partner Since 2012
           </div>
         </motion.div>
 
@@ -29,39 +28,48 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15 }}
         >
-          Powering Innovation with
+          Powering Innovation in
           <br />
-          <span className="gradient-text">Advanced Electronics</span>
+          <span className="gradient-text">Embedded & Automotive</span>
           <br />
-          Solutions
+          Electronics
         </motion.h1>
 
         <motion.p
-          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          LED Lighting · Display Boards · MDVR Systems · Dashcams · Vehicle Monitoring
+          Trusted technology partner delivering advanced electronic solutions for automotive and industrial sectors since 2012.
+        </motion.p>
+
+        <motion.p
+          className="text-muted-foreground text-sm max-w-xl mx-auto mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Serving <span className="text-foreground font-medium">Infosys, Toyota, Samsung, Volvo, FlixBus, IntrCity, TCS, Tata Electronics, Honda, Tech Mahindra</span> and more.
         </motion.p>
 
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
           <Link
             to="/products"
             className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
           >
-            View Products <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            Explore Solutions <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <a
             href="#contact"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-primary/5 transition-all duration-300"
           >
-            Contact Us
+            <FileText size={18} /> Request a Quote
           </a>
         </motion.div>
       </div>
