@@ -41,10 +41,10 @@ const ProductCard = ({ image, title, description, category }: ProductCardProps) 
       </p>
       <div className="pt-2">
         <a
-          href="/#contact"
+          href={`/#contact?product=${encodeURIComponent(title)}`}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300"
         >
-          Inquire Now
+          Enquire Now
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 duration-300" />
         </a>
       </div>

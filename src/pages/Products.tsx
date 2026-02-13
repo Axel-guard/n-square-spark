@@ -74,7 +74,9 @@ interface SolutionCardProps {
   description: string;
 }
 
-const SolutionCard = ({ image, title, description }: SolutionCardProps) => (
+const SolutionCard = ({ image, title, description }: SolutionCardProps) => {
+  const enquireHref = `/#contact?product=${encodeURIComponent(title)}`;
+  return (
   <motion.div
     className="group bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300"
     initial={{ opacity: 0, y: 24 }}
@@ -90,14 +92,15 @@ const SolutionCard = ({ image, title, description }: SolutionCardProps) => (
       <h3 className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors duration-300">{title}</h3>
       <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{description}</p>
       <div className="pt-2">
-        <a href="/#contact" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300">
-          Inquire Now
+        <a href={enquireHref} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300">
+          Enquire Now
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 duration-300" />
         </a>
       </div>
     </div>
   </motion.div>
-);
+  );
+};
 
 interface SectionHeaderProps {
   icon: React.ElementType;

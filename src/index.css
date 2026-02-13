@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Fonts loaded via index.html with preconnect for performance */
 
 @layer base {
