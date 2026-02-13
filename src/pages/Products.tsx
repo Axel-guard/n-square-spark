@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Bus, Car, Zap, Building2, GraduationCap, Factory, Lightbulb, Monitor, ShieldCheck, Camera } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -92,10 +93,10 @@ const SolutionCard = ({ image, title, description }: SolutionCardProps) => {
       <h3 className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors duration-300">{title}</h3>
       <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{description}</p>
       <div className="pt-2">
-        <a href={enquireHref} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300">
+        <Link to={`/?product=${encodeURIComponent(title)}#contact`} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300">
           Enquire Now
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 duration-300" />
-        </a>
+        </Link>
       </div>
     </div>
   </motion.div>

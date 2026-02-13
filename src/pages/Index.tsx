@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -9,7 +11,19 @@ import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-const Index = () => (
+const Index = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const el = document.getElementById(location.hash.replace("#", ""));
+        el?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location]);
+
+  return (
   <>
     <Navbar />
     <main>
@@ -24,6 +38,7 @@ const Index = () => (
     </main>
     <Footer />
   </>
-);
+  );
+};
 
 export default Index;
