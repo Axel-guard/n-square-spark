@@ -87,11 +87,11 @@ const SolutionCard = ({ image, title, description }: SolutionCardProps) => {
     whileHover={{ y: -4 }}
   >
     <div className="relative aspect-[4/3] overflow-hidden bg-background">
-      <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+      <img src={image} alt={title} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500" loading="lazy" />
     </div>
     <div className="p-5 space-y-3">
       <h3 className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors duration-300">{title}</h3>
-      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{description}</p>
+      <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       <div className="pt-2">
         <Link to={`/?product=${encodeURIComponent(title)}#contact`} className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300">
           Enquire Now

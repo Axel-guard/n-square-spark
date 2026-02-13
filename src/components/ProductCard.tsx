@@ -36,7 +36,7 @@ const ProductCard = ({ image, title, description, category }: ProductCardProps) 
       <h3 className="font-heading font-bold text-lg text-foreground group-hover:text-primary transition-colors duration-300">
         {title}
       </h3>
-      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+      <p className="text-muted-foreground text-sm leading-relaxed">
         {description}
       </p>
       <div className="pt-2">
