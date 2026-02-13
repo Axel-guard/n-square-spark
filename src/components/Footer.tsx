@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-new.png";
 
 const Footer = () => (
   <footer className="bg-background border-t border-border py-12">
@@ -7,7 +7,7 @@ const Footer = () => (
       <div className="grid md:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <img src={logo} alt="N Square Electronics" className="h-8 w-8 rounded" />
+            <img src={logo} alt="N Square Electronics Logo" className="h-9 w-9 md:h-[45px] md:w-[45px] rounded object-contain" />
             <span className="font-heading font-bold text-foreground">
               N Square <span className="text-primary">Electronics</span>
             </span>
@@ -37,7 +37,7 @@ const Footer = () => (
       </div>
 
       <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground text-sm">
-        © {new Date().getFullYear()} N Square Electronics. All rights reserved.
+        © 2026 Axel-Guard. All rights reserved.
       </div>
     </div>
   </footer>
