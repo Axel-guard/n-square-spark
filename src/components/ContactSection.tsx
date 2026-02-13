@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Send, MapPin, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -16,9 +17,21 @@ const offices = [
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const location = useLocation();
   const [form, setForm] = useState({ name: "", company: "", phone: "", email: "", requirement: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [focused, setFocused] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const product = params.get("product");
+    if (product) {
+      setForm((prev) => ({ ...prev, requirement: `Enquiry about: ${product}` }));
+      setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location.search]);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -33,7 +46,7 @@ const ContactSection = () => {
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!validate()) return;
-    toast({ title: "Inquiry Submitted!", description: "We'll get back to you shortly." });
+    toast({ title: "Enquiry Submitted!", description: "We'll get back to you shortly." });
     setForm({ name: "", company: "", phone: "", email: "", requirement: "" });
   };
 
@@ -165,7 +178,7 @@ const ContactSection = () => {
               type="submit"
               className="w-full py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              Submit Inquiry <Send size={16} />
+              Submit Enquiry <Send size={16} />
             </button>
           </motion.form>
         </div>
