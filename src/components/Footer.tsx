@@ -30,7 +30,7 @@ const Footer = () => (
           <div className="space-y-2 text-muted-foreground text-sm">
             <p>#14, 19th Main Road, Muneswara Block</p>
             <p>Bengaluru – 560026</p>
-            <p>+91 8548867793 / +91 9845179073</p>
+            <p>+91 8548867793</p>
             <p>nsquareelectronics24@gmail.com</p>
           </div>
         </div>

@@ -115,7 +115,6 @@ const ContactSection = () => {
               <div>
                 <p className="text-foreground font-semibold text-sm">Contact</p>
                 <p className="text-muted-foreground text-sm mt-0.5">+91 8548867793</p>
-                <p className="text-muted-foreground text-sm">+91 9845179073</p>
               </div>
             </div>
           </motion.div>
