@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { Building2, User, MapPin, Phone, FileText } from "lucide-react";
 
 const details = [
-  { icon: Building2, label: "Established", value: "21st July, 2017" },
+  { icon: Building2, label: "Established", value: "2012" },
   { icon: User, label: "CEO", value: "Narasimhamurthy Nayan" },
   { icon: FileText, label: "GST", value: "29AGJPN3838Q1ZG" },
-  { icon: Phone, label: "Phone", value: "8041011568" },
+  { icon: Phone, label: "Phone", value: "8548867793" },
   { icon: MapPin, label: "Registered Address", value: "Ground Floor, No 14, 19th Main,\nMuneshwara Block, Bengaluru – 560026,\nKarnataka, India" },
 ];
 

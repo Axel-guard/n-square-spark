@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Bus, Car, Zap, Building2, GraduationCap, Factory, Lightbulb, Monitor, ShieldCheck, Camera } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -62,11 +63,16 @@ const industries = [
   { icon: Factory, title: "Industrial Units", desc: "LED lighting, clean room interlocks, and process automation." },
 ];
 
+import galleryFleet from "@/assets/gallery/fleet-installations.png";
+import galleryLed from "@/assets/gallery/led-displays.png";
+import galleryBoards from "@/assets/gallery/display-boards.png";
+import galleryIndustrial from "@/assets/gallery/industrial-displays.png";
+
 const galleryImages = [
-  { src: routeDisplay, alt: "Bus LED Route Display Installation" },
-  { src: busDestinationBoard, alt: "Colored Bus Destination Sign Board" },
-  { src: busLedLight, alt: "Bus LED Tail Light Installation" },
-  { src: doorInterlock, alt: "Clean Room Door Interlock System" },
+  { src: galleryFleet, alt: "Fleet Vehicle Installations" },
+  { src: galleryLed, alt: "LED Display & Route Board Installations" },
+  { src: galleryBoards, alt: "Digital Display Boards & Clocks" },
+  { src: galleryIndustrial, alt: "Industrial LED Display Systems" },
 ];
 
 interface SolutionCardProps {
@@ -121,7 +127,12 @@ const SectionHeader = ({ icon: Icon, title, subtitle }: SectionHeaderProps) => (
   </motion.div>
 );
 
-const Products = () => (
+const Products = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
   <>
     <Navbar />
     <main className="pt-16">
@@ -220,12 +231,16 @@ const Products = () => (
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">Project <span className="gradient-text">Gallery</span></h2>
             <p className="text-muted-foreground mt-4 max-w-lg mx-auto">Real-world installations and deployments across India.</p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {galleryImages.map((img, i) => (
-              <motion.div key={i} className="relative group rounded-2xl overflow-hidden aspect-[4/3] bg-muted" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
-                <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-300 flex items-end p-4">
-                  <p className="text-card font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">{img.alt}</p>
+              <motion.div key={i} className="group rounded-2xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-lg transition-all duration-300" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }}>
+                <div className="p-3">
+                  <div className="rounded-xl overflow-hidden aspect-[16/10]">
+                    <img src={img.src} alt={img.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  </div>
+                </div>
+                <div className="px-4 pb-4">
+                  <p className="text-foreground font-semibold text-sm">{img.alt}</p>
                 </div>
               </motion.div>
             ))}
@@ -235,6 +250,7 @@ const Products = () => (
     </main>
     <Footer />
   </>
-);
+  );
+};
 
 export default Products;
